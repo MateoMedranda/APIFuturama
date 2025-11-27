@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import '../models/character_model.dart';
 import '../datasources/base_datasource.dart';
 
-class RickyMortyDataSource extends BaseDataSource<CharacterModel> {
-  final String URL = "https://rickandmortyapi.com/api/character";
+class FuturamaDataSource extends BaseDataSource<CharacterModel> {
+  final String URL = "https://futuramaapi.com/api/characters";
 
   //Hacer un GET
   Future<List<CharacterModel>> fetchData() async{
@@ -17,7 +17,7 @@ class RickyMortyDataSource extends BaseDataSource<CharacterModel> {
 
     //Decodificar un JSON (jsonDecode)
     final data = jsonDecode(resp.body);
-    final List results = data["results"];
+    final List results = data["items"];
 
     //Resultados (lista)
     return results.map((json) => CharacterModel.fromJson(json)).toList();
